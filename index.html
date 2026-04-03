@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>@dateswith.linh</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--coral:#fd7158;--coral-hover:#ff8a75;--coral-dark:#e5604a;--coral-glow:rgba(253,113,88,0.15);--black:#0a0a0a;--dark-surface:#161616;--dark-card:#1a1a1a;--dark-border:#2a2a2a;--text-primary:#f5f5f3;--text-secondary:#a0a0a0;--text-muted:#666;--white:#fff}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--text-primary);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+  .nav-left{display:flex;align-items:center;gap:16px}.nav-logo{font-size:22px;font-weight:800;color:var(--coral)}.nav-divider{width:1px;height:20px;background:var(--dark-border)}.nav-handle{font-size:14px;font-weight:500;color:var(--text-secondary)}
+  .nav-links{display:flex;gap:32px;align-items:center}.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s}.nav-links a:hover{color:var(--white)}
+  .nav-cta{background:var(--coral)!important;color:var(--white)!important;padding:10px 24px;border-radius:100px;font-weight:600!important}
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 40px 80px;gap:40px;position:relative;overflow:hidden;max-width:1200px;margin:0 auto}
+  .hero::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,var(--coral-glow) 0%,transparent 70%);pointer-events:none}
+  .hero-text{position:relative;z-index:2}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:28px;opacity:0;animation:fadeUp .8s ease forwards}
+  .hero-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--coral);animation:pulse 2s ease infinite}
+  .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:20px;opacity:0;animation:fadeUp .8s ease .15s forwards}
+  .hero h1 .accent{color:var(--coral)}
+  .hero-sub{font-size:18px;color:var(--text-secondary);line-height:1.65;margin-bottom:32px;max-width:480px;opacity:0;animation:fadeUp .8s ease .3s forwards}
+  .hero-actions{display:flex;gap:16px;align-items:center;opacity:0;animation:fadeUp .8s ease .45s forwards}
+  .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--coral);color:var(--white);font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;padding:16px 36px;border-radius:100px;text-decoration:none;border:none;cursor:pointer;transition:all .3s ease}
+  .btn-primary:hover{background:var(--coral-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(253,113,88,0.3)}
+  .btn-secondary{color:var(--text-secondary);font-size:16px;font-weight:500;text-decoration:none;padding:16px 24px;transition:color .2s}.btn-secondary:hover{color:var(--white)}
+  .hero-image-placeholder{position:relative;z-index:2;display:flex;justify-content:center;opacity:0;animation:fadeUp .8s ease .3s forwards}
+  .hero-img-box{width:85%;max-width:420px;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:var(--dark-card)}
+  .hero-img-box img{width:100%;height:100%;object-fit:cover;display:block}
+  .showcase-section{padding:120px 40px;position:relative}
+  .showcase-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--dark-border),transparent)}
+  .section-container{max-width:1100px;margin:0 auto}
+  .showcase-header{text-align:center;max-width:650px;margin:0 auto 64px}
+  .section-label{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:20px}
+  .showcase-header h2{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+  .showcase-header p{font-size:18px;color:var(--text-secondary);line-height:1.65}
+  .showcase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+  .showcase-item{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:9/16;background:var(--dark-card);border:1px solid var(--dark-border);transition:all .4s ease;cursor:pointer}
+  .showcase-item:hover{transform:translateY(-8px);border-color:rgba(253,113,88,0.4);box-shadow:0 20px 60px rgba(253,113,88,0.1)}
+  .showcase-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .showcase-item .overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 100%);z-index:2}
+  .showcase-item .overlay h4{font-size:16px;font-weight:700;margin-bottom:2px}
+  .showcase-item .overlay span{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--coral);font-weight:600}
+  .stats-section{padding:80px 40px;border-top:1px solid var(--dark-border);border-bottom:1px solid var(--dark-border)}
+  .stats-row{display:flex;justify-content:center;gap:80px;max-width:900px;margin:0 auto}
+  .stat-item{text-align:center}.stat-num{font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:700;letter-spacing:-2px;color:var(--coral);line-height:1}.stat-label{font-size:14px;color:var(--text-secondary);margin-top:8px;font-weight:500}
+  .approach-section{padding:120px 40px;background:var(--dark-surface)}
+  .approach-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
+  .approach-text h2{font-size:40px;font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:20px}
+  .approach-text p{font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+  .approach-cards{display:flex;flex-direction:column;gap:16px}
+  .approach-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:14px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .3s}
+  .approach-card:hover{border-color:var(--coral)}.approach-card .card-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+  .approach-card h4{font-size:15px;font-weight:600;margin-bottom:4px}.approach-card p{font-size:14px;color:var(--text-secondary);line-height:1.55;margin-bottom:0}
+  .services-section{padding:120px 40px}
+  .services-header{text-align:center;max-width:700px;margin:0 auto 64px}
+  .services-header h2{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+  .services-header p{font-size:18px;color:var(--text-secondary);line-height:1.65}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+  .service-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:18px;padding:36px 28px;transition:all .4s ease;position:relative;overflow:hidden}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--coral);transform:scaleX(0);transition:transform .4s ease}
+  .service-card:hover::before{transform:scaleX(1)}.service-card:hover{border-color:rgba(253,113,88,0.3);transform:translateY(-4px)}
+  .service-card .card-num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--coral);margin-bottom:20px;opacity:0.7}
+  .service-card h3{font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;line-height:1.25}
+  .service-card p{font-size:15px;color:var(--text-secondary);line-height:1.65}
+  .pricing-section{padding:120px 40px;background:var(--dark-surface)}
+  .pricing-header{text-align:center;max-width:600px;margin:0 auto 64px}
+  .pricing-header h2{font-size:44px;font-weight:800;letter-spacing:-1.5px;margin-bottom:12px}
+  .pricing-header p{font-size:17px;color:var(--text-secondary)}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
+  .price-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:20px;padding:36px 28px;transition:all .3s ease;position:relative}
+  .price-card.featured{background:var(--coral);border-color:var(--coral)}.price-card:not(.featured):hover{border-color:rgba(253,113,88,0.3);transform:translateY(-4px)}
+  .price-tag{position:absolute;top:16px;right:16px;background:var(--coral-dark);color:var(--white);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:100px}
+  .tier-name{font-size:18px;font-weight:700;margin-bottom:16px}
+  .price-list{list-style:none}.price-list li{font-size:14px;padding:8px 0;display:flex;gap:10px;align-items:flex-start;line-height:1.45}
+  .price-card:not(.featured) .price-list li{color:var(--text-secondary);border-bottom:1px solid var(--dark-border)}
+  .price-card.featured .price-list li{color:rgba(255,255,255,0.85);border-bottom:1px solid rgba(255,255,255,0.15)}
+  .price-list li:last-child{border-bottom:none}.check{flex-shrink:0;margin-top:1px}
+  .price-card:not(.featured) .check{color:var(--coral)}.price-card.featured .check{color:var(--white)}
+  .cta-section{padding:120px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta-section::before{content:'';position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(circle,var(--coral-glow) 0%,transparent 70%);pointer-events:none}
+  .cta-content{position:relative;z-index:2;max-width:600px;margin:0 auto}
+  .cta-content h2{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px}
+  .cta-content p{font-size:18px;color:var(--text-secondary);margin-bottom:36px;line-height:1.65}
+  .cta-email{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text-muted);margin-top:20px}
+  footer{padding:40px;border-top:1px solid var(--dark-border);display:flex;justify-content:space-between;align-items:center}
+  .footer-logo{font-size:18px;font-weight:800;color:var(--coral)}
+  .footer-links{display:flex;gap:24px}.footer-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color .2s}.footer-links a:hover{color:var(--text-secondary)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+  .reveal{opacity:0;transform:translateY(30px);transition:all .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center;padding:100px 20px 60px}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-image-placeholder{order:-1}.hero-img-box{max-width:280px}.showcase-grid{grid-template-columns:repeat(2,1fr)}.approach-grid{grid-template-columns:1fr;gap:48px}.services-grid{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr;max-width:400px}.stats-row{flex-wrap:wrap;gap:40px}nav{padding:16px 20px}.nav-links{display:none}.showcase-header h2,.services-header h2,.pricing-header h2,.approach-text h2{font-size:32px}footer{flex-direction:column;gap:16px;text-align:center}}
+  @media(max-width:600px){.showcase-grid{grid-template-columns:1fr;max-width:300px;margin:0 auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo">ReelEats</div>
+    <div class="nav-divider"></div>
+    <div class="nav-handle">@dateswith.linh</div>
+  </div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact" class="nav-cta">Work With Me</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge"><div class="pulse"></div>Melbourne Food Creator</div>
+    <h1>Content that doesn't just look good. <span class="accent">It drives visits.</span></h1>
+    <p class="hero-sub">I'm Linh. I create food content designed to bring new customers to your venue. I'm also the co-founder of ReelEats - an app that helps turn discovery into actual visits, not just views.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Work with me &#8594;</a>
+      <a href="#work" class="btn-secondary">See my work</a>
+    </div>
+  </div>
+  <div class="hero-image-placeholder">
+    <div class="hero-img-box">
+      <img src="linh-drom.jpg" alt="Linh creating food content">
+    </div>
+  </div>
+</section>
+
+<section class="showcase-section" id="work">
+  <div class="section-container">
+    <div class="showcase-header reveal">
+      <div class="section-label">Recent Work</div>
+      <h2>Content that stops the scroll.</h2>
+      <p>Authentic short-form video built for Instagram Reels and TikTok. Every piece is crafted around proven hooks tailored to your venue.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="showcase-item reveal">
+        <img src="linh-drom.jpg" alt="DROM pastries">
+        <div class="overlay"><h4>DROM</h4><span>Pastries &#183; Melbourne</span></div>
+      </div>
+      <div class="showcase-item reveal" style="transition-delay:0.1s">
+        <img src="linh-ao.jpg" alt="AO Peach Ice Cream">
+        <div class="overlay"><h4>Australian Open</h4><span>Event &#183; Melbourne</span></div>
+      </div>
+      <div class="showcase-item reveal" style="transition-delay:0.2s">
+        <img src="linh-norimaki.jpg" alt="Nori Maki">
+        <div class="overlay"><h4>Nori Maki</h4><span>12,000 views &#183; Japanese</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-row reveal">
+    <div class="stat-item"><div class="stat-num">100K+</div><div class="stat-label">Top reel views (organic)</div></div>
+    <div class="stat-item"><div class="stat-num">15x</div><div class="stat-label">View-to-follower ratio</div></div>
+    <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Venues featured</div></div>
+  </div>
+</section>
+
+<section class="approach-section">
+  <div class="approach-grid">
+    <div class="approach-text reveal">
+      <div class="section-label">The Approach</div>
+      <h2>Not just another food video.</h2>
+      <p>There's no shortage of great food content out there - but what happens after someone watches it?</p>
+      <p>As co-founder of ReelEats, I focus on turning that discovery into actual visits. After seeing your spot on social media, people save it into their app and come back to it when they're deciding where to eat.</p>
+      <p>So it's not just views - it's real intent and action.</p>
+    </div>
+    <div class="approach-cards reveal" style="transition-delay:0.15s">
+      <div class="approach-card"><div class="card-icon">&#127909;</div><div><h4>Content built on proven hooks</h4><p>Every reel is tailored to your target audience. We match your venue with the right creative angle so it actually gets watched, saved, and shared.</p></div></div>
+      <div class="approach-card"><div class="card-icon">&#128202;</div><div><h4>Real intent data via ReelEats</h4><p>See exactly how many people saved your restaurant, marked it as "want to try", and logged a visit. Not just views - actual intent.</p></div></div>
+      <div class="approach-card"><div class="card-icon">&#128205;</div><div><h4>Permanent spot on users' food maps</h4><p>Your venue doesn't disappear after 48 hours. It sits in users' personal food lists, resurfacing every time they plan where to eat.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="services">
+  <div class="services-header reveal">
+    <div class="section-label">What You Get</div>
+    <h2>Content + data. Not just another reel.</h2>
+    <p>Every video is built on proven hooks and tailored to your audience. We'll promote your venue with content that actually aligns with your target customers. All this backed by our data &amp; analytics.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="card-num">01</div><h3>Scroll-stopping content</h3><p>Short-form video crafted for Instagram Reels and TikTok. Built around proven hooks, tailored to your venue's personality and audience.</p></div>
+    <div class="service-card reveal" style="transition-delay:0.1s"><div class="card-num">02</div><h3>Real intent data</h3><p>Your venue gets plugged into ReelEats - the app where Melbourne foodies save restaurants from social media. Track saves, intent, and visits.</p></div>
+    <div class="service-card reveal" style="transition-delay:0.2s"><div class="card-num">03</div><h3>Content you can keep</h3><p>Repurpose across your own social channels, Google Business Profile, website, and in-venue screens. Quality content that works long after the post.</p></div>
+  </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+  <div class="pricing-header reveal">
+    <div class="section-label">Packages</div>
+    <h2>No retainers. No lock-in contracts. Just results.</h2>
+    <p>Ask about our packages:</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal"><div class="tier-name">Content</div>
+      <ul class="price-list"><li><span class="check">&#10003;</span> 1x Instagram Reel + TikTok</li><li><span class="check">&#10003;</span> Story coverage</li><li><span class="check">&#10003;</span> Post-campaign analytics</li><li><span class="check">&#10003;</span> 14-day delivery</li></ul>
+    </div>
+    <div class="price-card featured reveal" style="transition-delay:0.1s">
+      <div class="price-tag">Most Popular</div>
+      <div class="tier-name">Content + ReelEats</div>
+      <ul class="price-list"><li><span class="check">&#10003;</span> Everything in Content</li><li><span class="check">&#10003;</span> Content usage rights (90 days)</li><li><span class="check">&#10003;</span> Full access to ReelEats analytics</li><li><span class="check">&#10003;</span> Push notifications to app users</li></ul>
+    </div>
+    <div class="price-card reveal" style="transition-delay:0.2s"><div class="tier-name">Full Package</div>
+      <ul class="price-list"><li><span class="check">&#10003;</span> Everything in Content + ReelEats</li><li><span class="check">&#10003;</span> Multi-creator campaign (2-3 creators)</li><li><span class="check">&#10003;</span> Featured spot in app (30 days)</li><li><span class="check">&#10003;</span> Unlimited content usage rights</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="cta-content reveal">
+    <h2>Let's make your venue the one they actually visit.</h2>
+    <p>Reach out to discuss a collaboration. No commitment, just a conversation.</p>
+    <a href="#" id="cta-btn" class="btn-primary">Get in touch &#8594;</a>
+    <div class="cta-email" id="cta-email-text"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ReelEats</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/dateswith.linh" target="_blank">@dateswith.linh</a>
+    <a href="https://reeleats.app" target="_blank">reeleats.app</a>
+    <a href="#" id="footer-contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+var e='adm'+'in'+'@reel'+'eats.com'+'.au';
+document.getElementById('cta-btn').href='mai'+'lto:'+e;
+document.getElementById('cta-email-text').textContent=e;
+document.getElementById('footer-contact').href='mai'+'lto:'+e;
+var o=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){o.observe(el)});
+</script>
+</body>
+</html>
